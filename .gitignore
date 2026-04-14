@@ -131,3 +131,7 @@ dist
 
 # Custom Repo Ignores
 **/com.ascend.japanesereviews.streamDeckPlugin
+
+# Build output
+com.ascend.japanesereviews.sdPlugin/bin/
+com.ascend.japanesereviews.sdPlugin/node_modules/

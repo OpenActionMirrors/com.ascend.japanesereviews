@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "UUID": "com.ascend.japanesereviews",
+  "Name": "Japanese Reviews",
+  "Version": "2.0.0.0",
+  "Author": "Ascend (Will Eddins)",
+  "Description": "Displays the number of current reviews across Japanese learning sites.",
+  "Icon": "static/imgs/pluginIcon",
+  "CodePath": "bin/plugin.js",
+  "Category": "Japanese Reviews",
+  "CategoryIcon": "static/imgs/pluginIcon",
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    { "Platform": "windows", "MinimumVersion": "10" },
+    { "Platform": "mac", "MinimumVersion": "10.15" }
+  ],
+  "Nodejs": {
+    "Version": "20",
+    "Debug": "enabled"
+  },
+  "Actions": [
+    {
+      "UUID": "com.ascend.japanesereviews.action",
+      "Name": "Japanese Reviews",
+      "Icon": "static/imgs/pluginIcon",
+      "Tooltip": "Displays the number of current reviews across Japanese learning sites.",
+      "Controllers": ["Keypad"],
+      "States": [
+        {
+          "Image": "static/imgs/actions/review/pluginIcon"
+        }
+      ],
+      "PropertyInspectorPath": "ui/property-inspector.html"
+    }
+  ]
+}

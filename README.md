@@ -2,11 +2,12 @@
 
 A collection of review trackers for various Japanese review websites. The following sites are supported:
 
-| Name     | Description     | Website              |
-| -------- | --------------- | -------------------- |
-| Bunpro   | Grammar & Vocab | https://bunpro.jp    |
-| Wanikani | Kanji           | https://wanikani.com |
-| MaruMori | Grammar & Vocab | https://marumori.io  |
+| Name     | Description     | Auth Method        | Website              |
+| -------- | --------------- | ------------------ | -------------------- |
+| Bunpro   | Grammar & Vocab | API Key            | https://bunpro.jp    |
+| Wanikani | Kanji           | API Key            | https://wanikani.com |
+| MaruMori | Grammar & Vocab | API Key            | https://marumori.io  |
+| Kitsun   | Grammar & Vocab | Email & Password   | https://kitsun.io    |
 
 Icons for each website are shown with a counter of the number of reviews currently waiting, which updates every 10 minutes. Updates are timed to 1 minute after the hour to ensure hourly updates (esp. Wanikani) are shown as soon as possible.
 
@@ -16,9 +17,12 @@ Icons for each website are shown with a counter of the number of reviews current
 
 Clicking on each button will open to the relevant website in your default browser, with reviews being one click away.
 
-## Getting Started
+## Requirements
 
-This plugin requires the Stream Deck software to be installed on your computer.
+- **Stream Deck software 7.1+**
+- **Node.js 24+** (for building from source)
+
+## Getting Started
 
 There are a few ways to utilize this Stream Deck plugin:
 
@@ -26,22 +30,54 @@ There are a few ways to utilize this Stream Deck plugin:
 
 2. Download the latest released version from Github and run `com.ascend.japanesereviews.streamDeckPlugin`.
 
-3. Copy the entire `com.ascend.japanesereviews.sdPlugin` folder under `/src` into the following folder:
+3. Build from source and copy the `com.ascend.japanesereviews.sdPlugin` folder into the following folder:
     * On Windows: `%appdata%\Elgato\StreamDeck\Plugins\`
     * On macOS: `~/Library/Application Support/com.elgato.StreamDeck/Plugins/`
 
 ## Building
 
-Building is optional and only necessary for packaging the `.streamDeckPlugin` for distribution. For local usage and testing, copying the entire sdPlugin to the Stream Deck plugin folder is sufficient.
+1. Install build dependencies from the project root:
 
-To build, simply run `/build/build.ps1` using Powershell, navigate to the build directory and run the following command:
+   ```sh
+   npm install
+   ```
 
-`./DistributionTool -b -i ../src/com.ascend.japanesereviews.sdPlugin -o ./`
+2. Compile the TypeScript source into the plugin bundle:
 
-A `.streamDeckPlugin` file will be output in the build folder, which can be run to install the plugin.
+   ```sh
+   npm run build
+   ```
+
+   This outputs `com.ascend.japanesereviews.sdPlugin/bin/plugin.js`.
+
+3. Install the plugin's runtime dependencies:
+
+   ```sh
+   cd com.ascend.japanesereviews.sdPlugin
+   npm install --omit=dev
+   ```
+
+4. Copy the entire `com.ascend.japanesereviews.sdPlugin` folder to the Stream Deck plugins directory (see paths above) and restart Stream Deck.
+
+### Watch Mode
+
+For development, you can use watch mode to automatically rebuild on changes:
+
+```sh
+npm run watch
+```
+
+### Packaging for Distribution
+
+To package the plugin as a `.streamDeckPlugin` installer, install the [Elgato CLI](https://docs.elgato.com/streamdeck/sdk/introduction/getting-started/) and run:
+
+```sh
+npm install -g @elgato/cli@latest
+streamdeck pack com.ascend.japanesereviews.sdPlugin
+```
 
 ## Contributing
 
 Feel free to suggest feature changes or add support for additional Japanese review sites by opening a pull request.
 
-Run `npm install` from the `/src` folder to retrieve ESlint configuration. All javascript files follow Airbnb Javascript coding styles.
+The plugin is written in TypeScript and built with Rollup. Source code is in `src/`, the Property Inspector UI is in `ui/`, and the compiled plugin lives in `com.ascend.japanesereviews.sdPlugin/`.

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Japanese Reviews</title>
+  <link rel="stylesheet" href="sdpi.css" />
+</head>
+<body>
+  <div class="sdpi-wrapper">
+    <div class="sdpi-item">
+      <div class="sdpi-item-label">Website</div>
+      <select title="Website" class="sdpi-item-value select" id="websiteSelect" onchange="onWebsiteChange();">
+        <option value="bunpro">Bunpro</option>
+        <option value="wanikani">Wanikani</option>
+        <option value="marumori-vocab">MaruMori Vocab</option>
+        <option value="marumori-grammar">MaruMori Grammar</option>
+        <option value="kitsun">Kitsun</option>
+      </select>
+    </div>
+
+    <div id="apiKeyGroup">
+      <div class="sdpi-item">
+        <div class="sdpi-item-label">API Key</div>
+        <input class="sdpi-item-value" id="apiKey" required placeholder="API Token" onchange="updateSettings();" />
+      </div>
+    </div>
+
+    <div id="credentialsGroup" style="display: none;">
+      <div class="sdpi-item">
+        <div class="sdpi-item-label">Email</div>
+        <input class="sdpi-item-value" id="username" type="email" placeholder="email@example.com" onchange="updateSettings();" />
+      </div>
+      <div class="sdpi-item">
+        <div class="sdpi-item-label">Password</div>
+        <input class="sdpi-item-value" id="password" type="password" placeholder="Password" onchange="updateSettings();" />
+      </div>
+    </div>
+  </div>
+
+  <script type="application/javascript" src="property-inspector.js"></script>
+</body>
+</html>
