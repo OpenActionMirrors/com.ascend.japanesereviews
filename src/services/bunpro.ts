@@ -7,19 +7,21 @@ export const bunpro: SiteConfig = {
 
   async getReviewCount(settings: ReviewSettings): Promise<number> {
     const response = await fetch(
-      `https://bunpro.jp/api/user/${settings.apiKey}/study_queue`,
+      `https://api.bunpro.jp/api/frontend/user/due?dangerously_authenticate_using_api_token=true`,
       {
         headers: {
           Pragma: "no-cache",
           "Cache-Control": "no-cache",
+          "Authorization": "Bearer " + settings.apiKey
         },
       }
     );
 
     const body = await response.json() as {
-      requested_information: { reviews_available: number };
+      total_due_grammar: number,
+      total_due_vocab: number
     };
 
-    return body.requested_information.reviews_available;
+    return body.total_due_grammar + body.total_due_vocab;
   },
 };

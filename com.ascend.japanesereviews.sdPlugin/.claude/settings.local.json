@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:bunpro.jp)",
+      "WebFetch(domain:community.bunpro.jp)",
+      "WebFetch(domain:www.postman.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:cbullard-dev.github.io)",
+      "WebFetch(domain:api.github.com)"
+    ]
+  }
+}
