@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Install plugin runtime dependencies
+        working-directory: com.ascend.japanesereviews.sdPlugin
+        run: npm install --omit=dev
+
+      - name: Install Elgato CLI
+        run: npm install -g @elgato/cli@latest
+
+      - name: Pack plugin
+        run: streamdeck pack com.ascend.japanesereviews.sdPlugin
+
+      - name: Upload release artifact
+        uses: softprops/action-gh-release@v2
+        with:
+          files: com.ascend.japanesereviews.streamDeckPlugin
