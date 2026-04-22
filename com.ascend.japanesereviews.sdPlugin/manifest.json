@@ -14,8 +14,14 @@
     "MinimumVersion": "7.1"
   },
   "OS": [
-    { "Platform": "windows", "MinimumVersion": "10" },
-    { "Platform": "mac", "MinimumVersion": "10.15" }
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    },
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.15"
+    }
   ],
   "Nodejs": {
     "Version": "20",
@@ -27,7 +33,9 @@
       "Name": "Japanese Reviews",
       "Icon": "static/imgs/pluginIcon",
       "Tooltip": "Displays the number of current reviews across Japanese learning sites.",
-      "Controllers": ["Keypad"],
+      "Controllers": [
+        "Keypad"
+      ],
       "States": [
         {
           "Image": "static/imgs/actions/review/pluginIcon"
