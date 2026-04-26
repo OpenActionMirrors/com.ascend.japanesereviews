@@ -23,6 +23,24 @@ jobs:
         working-directory: com.ascend.japanesereviews.sdPlugin
         run: npm install --omit=dev
 
+      # @napi-rs/canvas ships its native bindings as platform-filtered optional
+      # deps, so a Linux-only `npm install` produces a plugin bundle that crashes
+      # on Windows/macOS with "Cannot find native binding". Force-install every
+      # supported platform's binary at the same version as the installed canvas
+      # package so the packed .streamDeckPlugin works on any user's machine.
+      - name: Install cross-platform canvas bindings
+        working-directory: com.ascend.japanesereviews.sdPlugin
+        run: |
+          CANVAS_VERSION=$(node -p "require('./node_modules/@napi-rs/canvas/package.json').version")
+          echo "Bundling @napi-rs/canvas $CANVAS_VERSION bindings for win/mac/linux"
+          npm install --no-save --force \
+            @napi-rs/canvas-win32-x64-msvc@$CANVAS_VERSION \
+            @napi-rs/canvas-win32-arm64-msvc@$CANVAS_VERSION \
+            @napi-rs/canvas-darwin-x64@$CANVAS_VERSION \
+            @napi-rs/canvas-darwin-arm64@$CANVAS_VERSION \
+            @napi-rs/canvas-linux-x64-gnu@$CANVAS_VERSION \
+            @napi-rs/canvas-linux-arm64-gnu@$CANVAS_VERSION
+
       - name: Install Elgato CLI
         run: npm install -g @elgato/cli@latest
 
