@@ -8,7 +8,7 @@
   "Icon": "static/imgs/pluginIcon",
   "CodePath": "bin/plugin.js",
   "Category": "Japanese Reviews",
-  "CategoryIcon": "static/imgs/pluginIcon",
+  "CategoryIcon": "static/imgs/categoryIcon",
   "SDKVersion": 2,
   "Software": {
     "MinimumVersion": "7.1"
@@ -31,7 +31,7 @@
     {
       "UUID": "com.ascend.japanesereviews.action",
       "Name": "Japanese Reviews",
-      "Icon": "static/imgs/pluginIcon",
+      "Icon": "static/imgs/actionIcon",
       "Tooltip": "Displays the number of current reviews across Japanese learning sites.",
       "Controllers": [
         "Keypad"
