@@ -9,7 +9,7 @@
   "CodePath": "bin/plugin.js",
   "Category": "Japanese Reviews",
   "CategoryIcon": "static/imgs/categoryIcon",
-  "SDKVersion": 2,
+  "SDKVersion": 3,
   "Software": {
     "MinimumVersion": "7.1"
   },
